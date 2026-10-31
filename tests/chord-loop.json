@@ -1,0 +1,52 @@
+{
+  "patch": "drifting",
+  "transport": {
+    "bpm": 120,
+    "playing": true,
+    "timeSig": [
+      3,
+      4
+    ]
+  },
+  "events": [
+    {
+      "t": 0,
+      "on": 48,
+      "vel": 80
+    },
+    {
+      "t": 0,
+      "on": 55,
+      "vel": 80
+    },
+    {
+      "t": 0,
+      "on": 64,
+      "vel": 70
+    },
+    {
+      "beat": 24,
+      "off": 48
+    },
+    {
+      "beat": 24,
+      "off": 55
+    },
+    {
+      "beat": 24,
+      "off": 64
+    }
+  ],
+  "lengthBeats": 44,
+  "expect": {
+    "soundBy": 0.6,
+    "levelAt": [
+      {
+        "beat": 20,
+        "above": -40
+      }
+    ],
+    "silentAfter": 21.5,
+    "limiterBelow": 1
+  }
+}

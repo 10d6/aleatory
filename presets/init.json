@@ -3,5 +3,7 @@
   "synth": "aleatory",
   "patchVersion": 1,
   "name": "Init",
+  "author": "10d6",
+  "tags": [],
   "params": {}
 }

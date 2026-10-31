@@ -28,12 +28,12 @@ from CI at milestones.
 ```
 cmake -S . -B build -G Ninja && cmake --build build
 ./build/aleatory_render --check . --out build/renders
-./build/aleatory_render tests/chord.json --out x.wav
+./build/aleatory_render tests/hold.json --out x.wav
 ./build/aleatory_render --params
 
 # browser page (API.md §11)
 cmake -S . -B build-web -G Ninja -DCMAKE_TOOLCHAIN_FILE=synthkit/cmake/wasm32-wasi.cmake && cmake --build build-web
-node synthkit/web/test/browser-test.cjs build-web/web/aleatory.html build-web/test tests/chord.json
+node synthkit/web/test/browser-test.cjs build-web/web/aleatory.html build-web/test tests/hold.json
 
 # plugins (API.md §12)
 cmake -S . -B build-plugin -G Ninja -DSYNTHKIT_PLUGIN=ON -DSYNTHKIT_WEB_UI_DIR=$PWD/build-web/web && cmake --build build-plugin

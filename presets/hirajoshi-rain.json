@@ -1,0 +1,20 @@
+{
+  "synthkit": 1,
+  "synth": "aleatory",
+  "patchVersion": 1,
+  "name": "Hirajoshi Rain",
+  "author": "10d6",
+  "tags": [
+    "dark",
+    "busy"
+  ],
+  "params": {
+    "phrase.scale": 3,
+    "phrase.chaos": 45,
+    "phrase.density": 60,
+    "pattern.rate": 3,
+    "ghost.stages": 1,
+    "ghost.q": 4,
+    "voice.brightness": 2.8
+  }
+}

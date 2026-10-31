@@ -1,0 +1,30 @@
+{
+  "patch": "init",
+  "transport": {
+    "bpm": 96,
+    "playing": true
+  },
+  "events": [
+    {
+      "t": 0,
+      "on": 60,
+      "vel": 90
+    },
+    {
+      "beat": 12,
+      "off": 60
+    }
+  ],
+  "lengthBeats": 24,
+  "expect": {
+    "soundBy": 0.1,
+    "silentAfter": 14.5,
+    "limiterBelow": 1,
+    "levelAt": [
+      {
+        "beat": 6,
+        "above": -40
+      }
+    ]
+  }
+}
