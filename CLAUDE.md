@@ -23,6 +23,34 @@ from CI at milestones.
 6. Escape hatches and custom state (API.md §4, §5a) are the way to do unusual
    things. A feature moves into the kit when a second synth needs it.
 
+## Fresh workspace
+
+A new session starts without the toolchains. Install them first (Ubuntu; the
+same script CI uses):
+
+```
+git submodule update --init
+synthkit/tools/ci/deps.sh native && synthkit/tools/ci/deps.sh web && synthkit/tools/ci/deps.sh plugin
+```
+
+Playwright/Chromium for the browser test: usually preinstalled (try
+`NODE_PATH=$(npm root -g)`), else `npm install --no-save playwright@1.48.2 &&
+npx playwright install --with-deps chromium`. synthkit's CLAUDE.md has more
+(pluginval, a local JUCE checkout).
+
+## About this synth
+
+Notes for whoever works on it next (the README has the musical side):
+- `src/Synth.cpp` holds everything. Key presses start per-key patterns in
+  `processEvents`; ghost notes are scheduled a pass at a time on MIDI channel
+  16 (`kGhostChannel`) and tagged by key, so `ctx.cancel(tag)` stops a pattern.
+- `makeMotif` is the original sketch's phrase generator. It takes any uniform
+  random source so it can be checked against the sketch's JavaScript (the
+  port matched it on 2,016 motifs); keep it faithful when changing it.
+- Voices have no kit amp envelope (`ampEnv: false`): the main note uses env1,
+  ghosts env2, applied in `render`.
+- Not ported yet: the sketch's A/B button and its spectrum and phrase views.
+
 ## Commands
 
 ```
