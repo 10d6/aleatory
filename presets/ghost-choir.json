@@ -1,0 +1,23 @@
+{
+  "synthkit": 1,
+  "synth": "aleatory",
+  "patchVersion": 1,
+  "name": "Ghost Choir",
+  "author": "10d6",
+  "tags": [
+    "pad",
+    "ghosts"
+  ],
+  "params": {
+    "ghost.only": 1,
+    "pattern.mode": 2,
+    "phrase.density": 25,
+    "env2.attack": 0.6,
+    "env2.sustain": 0.7,
+    "env2.release": 2.5,
+    "ghost.bp": 0.85,
+    "ghost.level": 1,
+    "voice.vibrato": 14,
+    "echo.mix": 0.4
+  }
+}

@@ -14,7 +14,7 @@ permissions:
 
 env:
   SYNTH: aleatory               # the name given to synthkit_add_synth
-  SCENARIO: tests/chord.json      # rendered in the browser and natively, and compared
+  SCENARIO: tests/hold.json       # rendered in the browser and natively, and compared
 
 jobs:
   native:

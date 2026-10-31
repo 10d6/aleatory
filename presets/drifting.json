@@ -1,0 +1,23 @@
+{
+  "synthkit": 1,
+  "synth": "aleatory",
+  "patchVersion": 1,
+  "name": "Drifting",
+  "author": "10d6",
+  "tags": [
+    "evolving",
+    "pad"
+  ],
+  "params": {
+    "pattern.mode": 2,
+    "phrase.drift": 1,
+    "phrase.mutations": 2,
+    "phrase.gravity": 55,
+    "voice.brightness": 1.6,
+    "env1.attack": 0.4,
+    "env2.attack": 0.4,
+    "env2.release": 2.5,
+    "echo.mix": 0.35,
+    "echo.feedback": 0.5
+  }
+}

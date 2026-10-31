@@ -1,0 +1,33 @@
+{
+  "patch": "init",
+  "params": {
+    "pattern.mode": 0,
+    "pattern.repeats": 2
+  },
+  "transport": {
+    "bpm": 96,
+    "playing": true
+  },
+  "events": [
+    {
+      "t": 0,
+      "on": 64,
+      "vel": 100
+    },
+    {
+      "beat": 1,
+      "off": 64
+    }
+  ],
+  "lengthBeats": 16,
+  "expect": {
+    "soundBy": 0.1,
+    "levelAt": [
+      {
+        "beat": 6,
+        "above": -45
+      }
+    ],
+    "silentAfter": 12
+  }
+}

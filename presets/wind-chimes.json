@@ -1,0 +1,21 @@
+{
+  "synthkit": 1,
+  "synth": "aleatory",
+  "patchVersion": 1,
+  "name": "Wind Chimes",
+  "author": "10d6",
+  "tags": [
+    "bright",
+    "sparse"
+  ],
+  "params": {
+    "phrase.chaos": 20,
+    "phrase.density": 45,
+    "phrase.gravity": 20,
+    "voice.brightness": 3.2,
+    "ghost.level": 0.65,
+    "ghost.q": 3,
+    "echo.mix": 0.3,
+    "pattern.mode": 0
+  }
+}

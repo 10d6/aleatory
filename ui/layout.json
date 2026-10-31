@@ -1,13 +1,141 @@
 {
-  "theme": { "accent": "#5b4fc4" },
+  "theme": {
+    "accent": "#5b4fc4"
+  },
   "sections": [
-    { "title": "Oscillator", "controls": [ { "param": "osc.wave" } ] },
-    { "title": "Filter", "controls": [ { "param": "filter.cutoff", "size": "large" }, { "param": "filter.reso" } ] },
-    { "kit": "env1", "title": "Amp envelope" },
-    { "kit": "lfo1" },
-    { "kit": "modMatrix", "wide": true },
-    { "kit": "voices" },
-    { "kit": "master" }
+    {
+      "title": "Phrase",
+      "wide": true,
+      "controls": [
+        {
+          "param": "phrase.scale",
+          "type": "menu"
+        },
+        {
+          "param": "phrase.chaos"
+        },
+        {
+          "param": "phrase.density"
+        },
+        {
+          "param": "phrase.gravity"
+        },
+        {
+          "param": "phrase.mutations"
+        },
+        {
+          "param": "phrase.above",
+          "label": "At or above key"
+        },
+        {
+          "param": "phrase.drift"
+        },
+        {
+          "param": "phrase.set",
+          "label": "Motif set"
+        },
+        {
+          "type": "newMotifs"
+        }
+      ]
+    },
+    {
+      "title": "Pattern",
+      "controls": [
+        {
+          "param": "pattern.mode",
+          "type": "menu"
+        },
+        {
+          "param": "pattern.repeats"
+        },
+        {
+          "param": "pattern.rate",
+          "type": "menu"
+        }
+      ]
+    },
+    {
+      "title": "Voice",
+      "controls": [
+        {
+          "param": "voice.brightness",
+          "size": "large"
+        },
+        {
+          "param": "voice.vibrato"
+        }
+      ]
+    },
+    {
+      "kit": "env1",
+      "title": "Main note envelope"
+    },
+    {
+      "title": "Ghosts",
+      "wide": true,
+      "controls": [
+        {
+          "param": "ghost.level",
+          "label": "Level"
+        },
+        {
+          "param": "ghost.filter",
+          "label": "Filter"
+        },
+        {
+          "param": "ghost.bp",
+          "label": "Band-pass"
+        },
+        {
+          "param": "ghost.q",
+          "label": "Q"
+        },
+        {
+          "param": "ghost.stages",
+          "label": "Stages"
+        },
+        {
+          "param": "ghost.legato",
+          "label": "Legato"
+        },
+        {
+          "param": "ghost.only",
+          "label": "Ghosts only"
+        }
+      ]
+    },
+    {
+      "kit": "env2",
+      "title": "Ghost envelope"
+    },
+    {
+      "title": "Echo",
+      "controls": [
+        {
+          "param": "echo.mix",
+          "label": "Mix"
+        },
+        {
+          "param": "echo.time",
+          "label": "Time"
+        },
+        {
+          "param": "echo.feedback",
+          "label": "Feedback"
+        }
+      ]
+    },
+    {
+      "kit": "lfo1"
+    },
+    {
+      "kit": "modMatrix",
+      "wide": true
+    },
+    {
+      "kit": "master"
+    }
   ],
   "keyboard": true
 }
