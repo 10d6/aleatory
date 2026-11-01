@@ -49,6 +49,16 @@ Notes for whoever works on it next (the README has the musical side):
   port matched it on 2,016 motifs); keep it faithful when changing it.
 - Voices have no kit amp envelope (`ampEnv: false`): the main note uses env1,
   ghosts env2, applied in `render`.
+- LFOs are player-added (`standardLfos: { max: 8, start: 1 }`), so code must
+  not read a particular LFO (`ctx.lfo(n)`); use the matrix. `max` may only go
+  up. `patchVersion` 2 marks that change: `migratePatch` gives v1 patches
+  (saved with two fixed LFOs) a second LFO when a route uses `lfo2`
+  (`tests/v1-patch-keeps-lfo2.json` checks it).
+- Phrase parameters are deliberately not modulatable: they're read when a key
+  goes down, and modulating them would make a motif set stop being
+  reproducible.
+- Info text for every parameter lives in `ui/layout.json`'s `paramInfo`
+  (panel text in each section's `info`). Keep it true when behaviour changes.
 - Not ported yet: the sketch's A/B button and its spectrum and phrase views.
 
 ## Commands

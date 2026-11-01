@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "pluginCode": "Alea",
   "vendorCode": "Tend",
-  "patchVersion": 1,
+  "patchVersion": 2,
   "features": {
     "voices": 48,
     "voiceModes": [
@@ -14,7 +14,11 @@
     "standardEnvelopes": 2,
     "ampEnv": false,
     "eventQueue": 1024,
-    "standardLfos": 2,
-    "modSlots": 6
+    "standardLfos": {
+      "max": 8,
+      "start": 1
+    },
+    "modSlots": 12,
+    "tempoInPatch": true
   }
 }

@@ -1,0 +1,34 @@
+{
+  "synthkit": 1,
+  "synth": "aleatory",
+  "patchVersion": 2,
+  "name": "Tides",
+  "author": "10d6",
+  "tags": [
+    "evolving",
+    "lfo"
+  ],
+  "params": {
+    "pattern.mode": 2,
+    "phrase.density": 40,
+    "phrase.gravity": 50,
+    "phrase.drift": 1,
+    "voice.brightness": 1.8,
+    "ghost.q": 3,
+    "echo.mix": 0.35,
+    "echo.feedback": 0.45,
+    "sk.lfos": 3,
+    "lfo1.sync": 1,
+    "lfo1.division": 1,
+    "lfo2.shape": 6,
+    "lfo2.rate": 0.2,
+    "lfo3.shape": 1,
+    "lfo3.sync": 1,
+    "lfo3.division": 3
+  },
+  "mod": [
+    { "src": "lfo1", "dst": "voice.brightness", "amt": 0.3 },
+    { "src": "lfo2", "dst": "echo.time", "amt": 0.05 },
+    { "src": "lfo3", "dst": "ghost.bp", "amt": 0.35 }
+  ]
+}
