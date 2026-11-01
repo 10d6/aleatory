@@ -17,6 +17,14 @@ pitch, with their own envelope, so they sit behind the main note like overtones.
 - Motifs come from the *Motif set* number, so a project always reopens with
   the same phrases. *New motifs* moves to the next set.
 - Generated notes play on MIDI channel 16; play the synth on any other channel.
+- **LFOs:** a patch starts with one; *Add LFO* adds more (up to 8) and × removes
+  one. Each preset keeps its own. Route them in *Routes* (or right-click a
+  knob → *Modulate…*) to Brightness, Vibrato, the ghosts' Level, Band-pass, Q
+  and Legato, and the Echo. The *Tides* preset uses three.
+- **MIDI controllers:** CC 74 moves Brightness and CC 71 the ghosts' Band-pass.
+- **Tempo in patches:** in the browser, a saved patch keeps its tempo and time
+  signature. In a DAW the song's tempo rules.
+- The ⓘ next to a control or panel explains what it does.
 
 ## Compared with the browser sketch
 

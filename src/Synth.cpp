@@ -264,20 +264,20 @@ struct Aleatory : Synth {
     drift = b.add("phrase.drift").name("Drift").toggle().def(0).group("Phrase");
     motifSet = b.add("phrase.set").name("Motif Set").range(1, 999).integer().def(1).group("Phrase");
 
-    brightness = b.add("voice.brightness").name("Brightness").range(0.4, 4).def(2.2).modulatable().group("Voice");
+    brightness = b.add("voice.brightness").name("Brightness").range(0.4, 4).def(2.2).modulatable().cc(74).group("Voice");
     vibrato = b.add("voice.vibrato").name("Vibrato").range(0, 30).def(8).unit("ct").modulatable().group("Voice");
 
     ghostLevel = b.add("ghost.level").name("Ghost Level").range(0, 1).def(0.75).modulatable().group("Ghosts");
     ghostFilter = b.add("ghost.filter").name("Ghost Filter").toggle().def(1).group("Ghosts");
-    bpAmount = b.add("ghost.bp").name("Band-pass Amount").range(0, 1).def(0.6).modulatable().group("Ghosts");
+    bpAmount = b.add("ghost.bp").name("Band-pass Amount").range(0, 1).def(0.6).modulatable().cc(71).group("Ghosts");
     bpQ = b.add("ghost.q").name("Band-pass Q").range(0.5, 8).log().def(2).modulatable().group("Ghosts");
     bpStages = b.add("ghost.stages").name("Band-pass Stages").choices({"1 (gentle)", "2 (steeper)"}).group("Ghosts");
-    legato = b.add("ghost.legato").name("Ghost Legato").range(0.2, 1).def(0.85).group("Ghosts");
+    legato = b.add("ghost.legato").name("Ghost Legato").range(0.2, 1).def(0.85).modulatable().group("Ghosts");
     ghostsOnly = b.add("ghost.only").name("Ghosts Only").toggle().def(0).group("Ghosts");
 
     echoMix = b.add("echo.mix").name("Echo").range(0, 1).def(0.22).modulatable().group("Echo");
-    echoTime = b.add("echo.time").name("Echo Time").range(0.05, 1).log().def(0.37).unit("s").group("Echo");
-    echoFeedback = b.add("echo.feedback").name("Echo Feedback").range(0, 0.9).def(0.35).group("Echo");
+    echoTime = b.add("echo.time").name("Echo Time").range(0.05, 1).log().def(0.37).unit("s").modulatable().group("Echo");
+    echoFeedback = b.add("echo.feedback").name("Echo Feedback").range(0, 0.9).def(0.35).modulatable().group("Echo");
 
     // env1 shapes the main note, env2 the ghosts. Velocity sets their level
     // in the voice, so the envelopes themselves ignore it.
@@ -291,6 +291,21 @@ struct Aleatory : Synth {
     b.kitDefault("env2.sustain", 0.5);
     b.kitDefault("env2.release", 1.2);
     b.kitDefault("env2.velocity", 0);
+  }
+
+  // Version 1 patches come from when Aleatory always had two LFOs. Now the
+  // player adds LFOs and a patch starts with one, so a v1 patch that used
+  // LFO 2 (a route from, via or to it) keeps it.
+  void migratePatch(int fromVersion, PatchData& p) override {
+    if (fromVersion >= 2 || p.hasParam("sk.lfos")) return;
+    const Json& patch = p.json();  // const: reading mustn't add an empty "mod"
+    for (const auto& r : patch["mod"].items()) {
+      const std::string& dst = r["dst"].string();
+      if (r["src"].string() == "lfo2" || r["via"].string() == "lfo2" || dst.rfind("lfo2.", 0) == 0) {
+        p.setParam("sk.lfos", 2);
+        return;
+      }
+    }
   }
 
   std::unique_ptr<Voice> makeVoice() override { return std::make_unique<AleaVoice>(*this); }

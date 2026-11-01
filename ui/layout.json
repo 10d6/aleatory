@@ -6,6 +6,7 @@
     {
       "title": "Phrase",
       "wide": true,
+      "info": "How each key's melody (its motif) is made. Every key gets its own motif: a random walk over the scale with a Euclidean rhythm, 16 steps long, ending on the root, fifth or octave.\n\nScale, Chaos, Density, Gravity, At or above key and Motif set are read when you press a key, so a change is heard from the next key you play. Mutations and Drift apply from the next pass.",
       "controls": [
         {
           "param": "phrase.scale",
@@ -41,6 +42,7 @@
     },
     {
       "title": "Pattern",
+      "info": "What a held key does with its motif over time. A pass is 16 steps (one bar at 1/16), locked to the tempo: the DAW's in a plugin, the tempo control here in the browser.",
       "controls": [
         {
           "param": "pattern.mode",
@@ -57,6 +59,7 @@
     },
     {
       "title": "Voice",
+      "info": "The tone of every note, the key's own and the ghosts: a two-operator FM voice.",
       "controls": [
         {
           "param": "voice.brightness",
@@ -69,11 +72,13 @@
     },
     {
       "kit": "env1",
-      "title": "Main note envelope"
+      "title": "Main note envelope",
+      "info": "Shapes the note of the key you play. It also shapes the tone: brightness swells during the attack, settles with the decay and dulls on release.\n\nVelocity sets the note's loudness, so the envelope's own velocity amount starts at zero."
     },
     {
       "title": "Ghosts",
       "wide": true,
+      "info": "The generated notes. They play on MIDI channel 16 and go through a band-pass filter tuned to each note's own pitch, so they sit behind the main note like overtones. How hard you play the key sets how loud its ghosts are.",
       "controls": [
         {
           "param": "ghost.level",
@@ -107,10 +112,12 @@
     },
     {
       "kit": "env2",
-      "title": "Ghost envelope"
+      "title": "Ghost envelope",
+      "info": "Shapes every ghost note, and its tone the same way the main envelope does. Long attacks blur the phrase into a pad; short ones make it pluck."
     },
     {
       "title": "Echo",
+      "info": "A mono echo after everything, darkened on each repeat, followed by a gentle compressor that glues the notes and echoes together. The time is in seconds, not locked to the tempo.",
       "controls": [
         {
           "param": "echo.mix",
@@ -127,15 +134,84 @@
       ]
     },
     {
-      "kit": "lfo1"
-    },
-    {
-      "kit": "modMatrix",
-      "wide": true
-    },
-    {
       "kit": "master"
+    },
+    {
+      "title": "Modulation",
+      "tabs": [
+        {
+          "title": "LFOs",
+          "sections": [
+            {
+              "kit": "lfos",
+              "info": "Add as many LFOs as the sound needs (up to 8) with Add LFO, and remove them with ×; each preset keeps its own. An LFO does nothing until it's routed: right-click a knob and choose Modulate…, or add a route in the matrix below.\n\nSync locks an LFO to the tempo. Per Voice restarts it with each note, ghosts included, so every ghost gets its own wobble; Global shares one for all."
+            }
+          ]
+        },
+        {
+          "title": "Routes",
+          "sections": [
+            {
+              "kit": "modMatrix",
+              "wide": true,
+              "info": "Each route sends a source (an LFO, an envelope, velocity, the mod wheel, the beat…) to a parameter, by an amount; 'via' scales it by a second source.\n\nRoutes reach Brightness, Vibrato, the ghost Level, Band-pass, Q and Legato, the Echo, the kit's Pitch and Level, and the LFOs themselves. The Phrase settings can't be modulated, so a motif set always plays the same phrases."
+            }
+          ]
+        }
+      ]
     }
   ],
-  "keyboard": true
+  "keyboard": true,
+  "paramInfo": {
+    "phrase.scale": "The notes motifs are built from. A new scale gives every key a new motif.",
+    "phrase.chaos": "How far a motif strays from neat. More chaos drops beats from the Euclidean rhythm, adds notes off the grid, and allows leaps of several scale steps instead of small steps.",
+    "phrase.density": "How many of the 16 steps have a note: from 3 at 0% to 11 at 100%, spread as evenly as possible (a Euclidean rhythm). Each key's rhythm is rotated differently.",
+    "phrase.gravity": "How strongly the melody is pulled back toward the key you're holding. Low gravity lets it wander up and down the range; high keeps it circling the key.",
+    "phrase.mutations": "How many notes change on each pass: each moves a scale step or two. The first time a key's motif is heard it plays as made. The first and last notes never change, so the phrase stays recognisable.",
+    "phrase.above": "On: ghosts play from the key up to three octaves above. Off: they can also go an octave below it.",
+    "phrase.drift": "Off: each pass mutates the original motif, so the phrase wobbles around it. On: each pass mutates the last one, so changes build up and the phrase wanders away. A key remembers where it drifted to until its motif changes.",
+    "phrase.set": "Which collection of motifs the keys use. The same set (with the same Phrase settings) always gives the same phrases, so a project reopens sounding the same. Try another number for new phrases.",
+    "pattern.mode": "Play to end: the pattern plays all its repeats even after you let go.\nStop on release: letting go stops new ghosts; sounding ones ring out.\nLoop while held: the pattern keeps repeating (and mutating) for as long as you hold the key.",
+    "pattern.repeats": "How many passes a pattern plays in Play to end and Stop on release. Ignored by Loop while held.",
+    "pattern.rate": "The length of one step, as a note value at the current tempo. A pass is 16 steps.",
+    "voice.brightness": "How much the FM modulator bends the tone: low is near a pure sine, high is bright and bell-like. Playing harder makes notes brighter too. MIDI CC 74 moves it.",
+    "voice.vibrato": "Vibrato depth in cents. Each note gets its own slightly different speed, and the vibrato fades in over the attack plus about half a second.",
+    "ghost.level": "How loud the ghosts are against the main note. They also follow how hard you played the key.",
+    "ghost.filter": "Turns the ghosts' band-pass filter on or off.",
+    "ghost.bp": "How much of each ghost goes through its band-pass: 0 is the plain FM tone, 1 only the filtered sound (softer, rounder). MIDI CC 71 moves it.",
+    "ghost.q": "How narrow the band-pass is. Higher Q keeps less of the sound around each ghost's own pitch, for a purer, whistling tone.",
+    "ghost.stages": "One filter stage, or two in a row for a steeper, purer band-pass.",
+    "ghost.legato": "How long each ghost lasts, as a share of the time until the next one: low is staccato, 100% joins them up.",
+    "ghost.only": "Silences the note of the key you play, so only its ghosts sound; the first ghost then plays on the key's downbeat.",
+    "echo.mix": "How much of the sound goes into the echo.",
+    "echo.time": "Time between repeats, in seconds. Modulating it slightly with a slow LFO bends the echoes' pitch, like tape.",
+    "echo.feedback": "How much of each repeat comes back again: more feedback, longer tails.",
+    "lfo1.mode": "Global: one LFO shared by every note. Per Voice: it restarts with each note, ghosts included, so each ghost gets its own wobble.",
+    "lfo1.fade": "The LFO fades in over this time after each note starts, like a player easing into vibrato. With a fade, every note gets its own copy of the LFO.",
+    "lfo1.phase": "Shifts where in its cycle the LFO is: the point it starts from in Per Voice mode, an offset in Global.",
+    "lfo2.mode": "Global: one LFO shared by every note. Per Voice: it restarts with each note, ghosts included, so each ghost gets its own wobble.",
+    "lfo2.fade": "The LFO fades in over this time after each note starts, like a player easing into vibrato. With a fade, every note gets its own copy of the LFO.",
+    "lfo2.phase": "Shifts where in its cycle the LFO is: the point it starts from in Per Voice mode, an offset in Global.",
+    "lfo3.mode": "Global: one LFO shared by every note. Per Voice: it restarts with each note, ghosts included, so each ghost gets its own wobble.",
+    "lfo3.fade": "The LFO fades in over this time after each note starts, like a player easing into vibrato. With a fade, every note gets its own copy of the LFO.",
+    "lfo3.phase": "Shifts where in its cycle the LFO is: the point it starts from in Per Voice mode, an offset in Global.",
+    "lfo4.mode": "Global: one LFO shared by every note. Per Voice: it restarts with each note, ghosts included, so each ghost gets its own wobble.",
+    "lfo4.fade": "The LFO fades in over this time after each note starts, like a player easing into vibrato. With a fade, every note gets its own copy of the LFO.",
+    "lfo4.phase": "Shifts where in its cycle the LFO is: the point it starts from in Per Voice mode, an offset in Global.",
+    "lfo5.mode": "Global: one LFO shared by every note. Per Voice: it restarts with each note, ghosts included, so each ghost gets its own wobble.",
+    "lfo5.fade": "The LFO fades in over this time after each note starts, like a player easing into vibrato. With a fade, every note gets its own copy of the LFO.",
+    "lfo5.phase": "Shifts where in its cycle the LFO is: the point it starts from in Per Voice mode, an offset in Global.",
+    "lfo6.mode": "Global: one LFO shared by every note. Per Voice: it restarts with each note, ghosts included, so each ghost gets its own wobble.",
+    "lfo6.fade": "The LFO fades in over this time after each note starts, like a player easing into vibrato. With a fade, every note gets its own copy of the LFO.",
+    "lfo6.phase": "Shifts where in its cycle the LFO is: the point it starts from in Per Voice mode, an offset in Global.",
+    "lfo7.mode": "Global: one LFO shared by every note. Per Voice: it restarts with each note, ghosts included, so each ghost gets its own wobble.",
+    "lfo7.fade": "The LFO fades in over this time after each note starts, like a player easing into vibrato. With a fade, every note gets its own copy of the LFO.",
+    "lfo7.phase": "Shifts where in its cycle the LFO is: the point it starts from in Per Voice mode, an offset in Global.",
+    "lfo8.mode": "Global: one LFO shared by every note. Per Voice: it restarts with each note, ghosts included, so each ghost gets its own wobble.",
+    "lfo8.fade": "The LFO fades in over this time after each note starts, like a player easing into vibrato. With a fade, every note gets its own copy of the LFO.",
+    "lfo8.phase": "Shifts where in its cycle the LFO is: the point it starts from in Per Voice mode, an offset in Global.",
+    "env1.velocity": "How much playing harder makes the envelope louder. Aleatory already sets the main note's loudness from velocity, so 0 is the usual setting; raise it for a steeper response.",
+    "env2.velocity": "How much playing harder makes the envelope louder. Aleatory already sets the ghosts' loudness from velocity, so 0 is the usual setting; raise it for a steeper response.",
+    "sk.a4": "Concert pitch: the frequency of the A above middle C."
+  }
 }

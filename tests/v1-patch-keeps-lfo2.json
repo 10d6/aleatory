@@ -1,0 +1,16 @@
+{
+  "patch": {
+    "synthkit": 1,
+    "synth": "aleatory",
+    "patchVersion": 1,
+    "name": "Saved with v0.1 (two fixed LFOs)",
+    "params": { "lfo2.rate": 0.01, "lfo2.phase": 0.25 },
+    "mod": [ { "src": "lfo2", "dst": "sk.level", "amt": -1 } ]
+  },
+  "transport": { "bpm": 120, "playing": true },
+  "events": [ { "t": 0, "on": 60, "vel": 100 }, { "t": 1.5, "off": 60 } ],
+  "length": 2.0,
+  "expect": {
+    "levelAt": [ { "t": 0.5, "below": -60 }, { "t": 1.2, "below": -60 } ]
+  }
+}
